@@ -12,7 +12,7 @@ import org.w3c.dom.NamedNodeMap;
 public class XmlTransformer {
 	public static void main(String[] args) {
 		try {
-			File inputFile = new File("D:\\workspace\\test\\dataFiles\\Complex.xml");
+			File inputFile = new File("D:\\workspace\\test\\dataFiles\\sample.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(inputFile);
