@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import org.apache.hadoop.hbase.client.Connection;
 

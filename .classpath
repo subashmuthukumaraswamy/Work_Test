@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Quest/.m2/repository/org/apache/hbase/hbase-client/1.0.0/hbase-client-1.0.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Quest/.m2/repository/org/apache/hbase/hbase-common/1.0.0/hbase-common-1.0.0.jar"/>
@@ -25,6 +26,8 @@
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/java-json.jar"/>
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/hbase-0.94.6-cdh4.3.0-20130528.151659-86.jar"/>
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/mongo-java-driver-2.11.3.jar" sourcepath="D:/BigDataLabs/Jars/mongo-java-driver-2.11.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Quest/Downloads/mongo2gson-1.0.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/hive-jdbc-0.10.0.jar"/>
+	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/sqljdbc4-2.0.jar"/>
+	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/com.thoughtworks.xstream.jar" sourcepath="D:/BigDataLabs/Jars/com.thoughtworks.xstream.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

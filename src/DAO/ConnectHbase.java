@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.TableName;
@@ -17,11 +17,12 @@ public class ConnectHbase {
 	private static String hbase_columnName = "doc";
 
 	public static void main(String[] args) throws Exception {
-		ConnectHbase connectDB = new ConnectHbase();
+		ConnectHbase connectDB = null;
 		boolean connectHbase = true;
 		Connection connect = null;
 
 		if (connectHbase) {
+			connectDB = new ConnectHbase();
 			connect = connectDB.connectHbase();
 			ResultScanner rscan = null;
 
