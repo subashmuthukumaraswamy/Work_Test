@@ -29,5 +29,6 @@
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/hive-jdbc-0.10.0.jar"/>
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/sqljdbc4-2.0.jar"/>
 	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/com.thoughtworks.xstream.jar" sourcepath="D:/BigDataLabs/Jars/com.thoughtworks.xstream.jar"/>
+	<classpathentry kind="lib" path="D:/BigDataLabs/Jars/mysql.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
