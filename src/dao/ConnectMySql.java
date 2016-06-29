@@ -13,29 +13,30 @@ import utility.RandomStringTester;
 
 public class ConnectMySql {
 
+	static String SCHEMA_NAME = "subash";
+	static String TABLE_NAME = SCHEMA_NAME + "." + "EMPLOYEE_INFO1";
+
 	public static void main(String args[]) throws Exception {
 		System.out.println("Start");
- 		boolean isInitilLoad = false;
+		boolean isInitilLoad = false;
 		Connection connection = null;
 
 		try {
-
 			connection = getMySqlConnection(false);
-
 			if (isInitilLoad) {
-				dropTable(connection);
+				//dropTable(connection);
 				createTable(connection);
-				insertRecords(200, connection);
+				insertRecords(10, connection);
 			} else {
-				// updateTable(10, connection);
-				// deleteTable(connection);
-				insertRecords(1000000, connection);
+				//updateTable(10, connection);
+				//deleteTable(connection);
+				insertRecords(20, connection);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//connection.commit();
+			// connection.commit();
 			connection.close();
 		}
 		System.out.println("END ");
@@ -48,7 +49,7 @@ public class ConnectMySql {
 
 		if (doPrint) {
 			Statement st = connection.createStatement();
-			ResultSet rs = st.executeQuery("select * from subash.EMPLOYEE");
+			ResultSet rs = st.executeQuery("select * from " + TABLE_NAME);
 			while (rs.next()) {
 				System.out.print(rs.getString(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");
@@ -61,16 +62,16 @@ public class ConnectMySql {
 	}
 
 	public static void dropTable(Connection connection) throws SQLException {
-		String sql = "DROP TABLE subash.EMPLOYEE_INFO";
+		String sql = "DROP TABLE " + TABLE_NAME;
 		Statement st = connection.createStatement();
 		st.executeUpdate(sql);
 		System.out.println("Table Dropped");
 	}
 
 	public static void updateTable(int count, Connection connection) throws SQLException {
-		String sql = "UPDATE subash.EMPLOYEE_INFO SET " + "TP_RATING = (TP_RATING - 10), "
+		String sql = "UPDATE " + TABLE_NAME + " SET " + "TP_RATING = (TP_RATING - 10), "
 				+ "LAST_UPDATED_DATE = CURRENT_TIMESTAMP WHERE EMPLOYEE_ID IN (SELECT top " + count
-				+ " EMPLOYEE_ID FROM subash.EMPLOYEE_INFO WHERE EMPLOYEE_NAME LIKE '%as%')";
+				+ " EMPLOYEE_ID FROM " + TABLE_NAME + " WHERE EMPLOYEE_NAME LIKE '%as%')";
 
 		Statement st = connection.createStatement();
 		st.executeUpdate(sql);
@@ -78,9 +79,9 @@ public class ConnectMySql {
 	}
 
 	public static void deleteTable(Connection connection) throws SQLException {
-		String sql = "UPDATE subash.EMPLOYEE_INFO SET LAST_UPDATED_DATE = CURRENT_TIMESTAMP, "
-				+ "DELETED_DATE = CURRENT_TIMESTAMP "
-				+ " WHERE EMPLOYEE_ID IN (SELECT EMPLOYEE_ID FROM subash.EMPLOYEE_INFO WHERE EMPLOYEE_NAME LIKE '%ef%'  )";
+		String sql = "UPDATE " + TABLE_NAME + " SET LAST_UPDATED_DATE = CURRENT_TIMESTAMP, "
+				+ "DELETED_DATE = CURRENT_TIMESTAMP " + " WHERE EMPLOYEE_ID IN (SELECT EMPLOYEE_ID FROM " + TABLE_NAME
+				+ " WHERE EMPLOYEE_NAME LIKE '%ef%'  )";
 		// System.out.println(sql);
 		Statement st = connection.createStatement();
 		st.executeUpdate(sql);
@@ -89,12 +90,11 @@ public class ConnectMySql {
 	}
 
 	public static void createTable(Connection connection) throws SQLException {
-		String sql = "CREATE TABLE subash.EMPLOYEE_INFO" + "( " + "EMPLOYEE_ID int NOT NULL, "
-				+ "EMPLOYEE_NAME varchar(50) NULL, " + "BIRTH_DT datetime NOT NULL, "
-				+ "TP_RATING smallint NULL, " + "GI_ID bigint NOT NULL, " + "EMAIL_TXT varchar(320) NULL, "
-				+ "ROOSTER_IND bit NOT NULL, " + "EMP_SVRC_LVL_NO int NOT NULL, "
-				+ "CLIENT_RETENTION_NO decimal(4, 2) NULL," + "DELETED_DATE datetime NULL, "
-				+ "LAST_UPDATED_DATE datetime NULL " + " )";
+		String sql = "CREATE TABLE " + TABLE_NAME + "" + "( " + "EMPLOYEE_ID int NOT NULL, "
+				+ "EMPLOYEE_NAME varchar(50) NULL, " + "BIRTH_DT datetime NOT NULL, " + "TP_RATING smallint NULL, "
+				+ "GI_ID bigint NOT NULL, " + "EMAIL_TXT varchar(320) NULL, " + "ROOSTER_IND bit NOT NULL, "
+				+ "EMP_SVRC_LVL_NO int NOT NULL, " + "CLIENT_RETENTION_NO decimal(4, 2) NULL,"
+				+ "DELETED_DATE datetime NULL, " + "LAST_UPDATED_DATE datetime NULL " + " )";
 
 		Statement st = connection.createStatement();
 		st.executeUpdate(sql);
@@ -107,7 +107,7 @@ public class ConnectMySql {
 	public static int getMax(Connection connection) throws SQLException {
 		int max = 0;
 		Statement sta = connection.createStatement();
-		String Sql = "select max(EMPLOYEE_ID) from subash.EMPLOYEE_INFO";
+		String Sql = "select max(EMPLOYEE_ID) from " + TABLE_NAME + "";
 		ResultSet rs = sta.executeQuery(Sql);
 		while (rs.next()) {
 			max = rs.getInt(1);
@@ -118,7 +118,7 @@ public class ConnectMySql {
 	public static void insertRecords(int count, Connection connection) throws SQLException {
 		Statement st = connection.createStatement();
 		boolean isExecute = true;
-		String insertBegin = "INSERT INTO " + " subash.EMPLOYEE_INFO "
+		String insertBegin = "INSERT INTO " + " " + TABLE_NAME + " "
 				+ "(EMPLOYEE_ID ,BIRTH_DT ,TP_RATING ,GI_ID ,EMAIL_TXT ,"
 				+ "ROOSTER_IND ,EMP_SVRC_LVL_NO ,CLIENT_RETENTION_NO ,DELETED_DATE ,LAST_UPDATED_DATE ,EMPLOYEE_NAME) "
 				+ "VALUES ";
